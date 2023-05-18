@@ -2,12 +2,25 @@
 const express = require('express')
 const router = express.Router()
 
+const ShortenerUrl = require('../../models/shortenerUrl')
+
 router.get('/:code', (req, res) => {
+  const code = req.params.code
+
   //find original url in mongoDB by "code"
+  ShortenerUrl.findOne({ shortenerCode: code })
+    //redirect to this original url
+    .lean()
+    .then(url => {
+      if (!url) {
+        res.redirect('/')
+      }
+      res.redirect(url.originalUrl)
+    })
+    .catch(error => {
+      console.log(error)
+    })
 
-  //redirect to this original url
-
-  res.redirect('https://www.sinya.com.tw/diy')
 })
 
 module.exports = router

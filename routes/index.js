@@ -5,6 +5,6 @@ const home = require('./modules/home')
 const shortenerUrl = require('./modules/shortenerUrl')
 
 router.use('/', home)
-router.use('/cool', shortenerUrl)
+router.use('/cool.alan', shortenerUrl)
 
 module.exports = router
