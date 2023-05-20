@@ -19,8 +19,6 @@ const randomCode = {
       code += index[Math.floor(Math.random() * index.length)]
     }
 
-    isDuplicate(code)
-
     return code
   },
 }
