@@ -1,7 +1,31 @@
-<form action="/" method="POST">
-  <label for="OriginalUrl">Original URL: </label>
-  <input type="text" name="OriginalUrl" id="OriginalUrl" placeholder="enter your url here">
-  <button type="submit">Submit</button>
-  <label for="shortenerUrl">Your shortener URL: </label>
-  <input type="text" name="shortenerUrl" value="{{ shortenerUrl }}" id="shortenerUrl" disabled>
-</form>
+<div class="container mt-5">
+  <form action="/" method="POST">
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="OriginalUrl">Original URL:</label>
+      <input type="text" class="form-control" name="OriginalUrl" id="OriginalUrl" placeholder="enter your url over here" aria-label="OriginalUrl"
+      aria-describedby="submit-button">
+    <button class="btn btn-outline-secondary" type="submit" id="submit-button">Convert</button>
+    </div>
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="shortenerUrl">Short URL:</label>
+      <input type="text" class="form-control" id="shortenerUrl" placeholder="Short url will display over here" aria-label="shortenerUrl" aria-describedby="copy-button" value="{{ shortenerUrl }}"  disabled>
+      <button class="btn btn-outline-secondary" type="button" id="copy-button">Copy</button>
+    </div>
+  </form>
+</div>
+
+<style>
+  .input-group-text{
+    width: 120px;
+    background-color: LemonChiffon;
+  }
+
+  .btn{
+    width: 80px;
+  }
+
+  #shortenerUrl{
+    background-color: white;
+  }
+
+</style>
