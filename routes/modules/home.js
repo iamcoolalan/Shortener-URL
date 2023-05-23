@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
         res.render('index', { shortenerUrl: `${websiteName}${url.shortenerCode}` })
       } else {
         //no, generate new code for user and save it in DB
-        const shortenerCode = randomCode.generateRandomCode()
+        const shortenerCode = randomCode
         ShortenerUrl.create({
           originalUrl,
           shortenerCode

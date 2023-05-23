@@ -1,27 +1,14 @@
 const ShortenerUrl = require('../models/shortenerUrl')
 const db = require('../config/mongoose')
 
-const lowerCaseAlphabet = 'abcdefghijklmnopqrstuvwxyz'
-const upperCaseAlphabet = lowerCaseAlphabet.toUpperCase()
-const number = '1234567890'
-
-const index = 
-lowerCaseAlphabet.split('')
-.concat(upperCaseAlphabet.split(''))
-.concat(number.split(''))
+//use nanoID create random code
+const { customAlphabet } = require("nanoid")
+const alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+const nanoid = customAlphabet(alphabet, 5)
 
 
-const randomCode = {
-  generateRandomCode: function() {
-    let code = ''
+let randomCode = nanoid()
 
-    for (let i = 0; i < 5; i++) {
-      code += index[Math.floor(Math.random() * index.length)]
-    }
-
-    return code
-  },
-}
 
 /*function isDuplicate(checkingCode, objectCode){
 
