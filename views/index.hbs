@@ -18,7 +18,7 @@
   
   <div>
     <table class="table caption-top align-middle">
-      <caption>History</caption>
+      <caption>Last 5 records</caption>
       <colgroup>
         <col style="width: 60%;">
         <col style="width: 30%;">
@@ -42,6 +42,15 @@
         </tr>
         {{/each}}
       </tbody>
+      <tfoot>
+        <td></td>
+        <td></td>
+        <td class="text-end">
+          <button class="btn btn-outline-dark" type="button">
+            <a href="/history" id="more-btn">More...</a>
+          </button>
+        </td>
+      </tfoot>
     </table>
   </div>
 </div>

@@ -28,3 +28,12 @@ img{
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+#more-btn, #back-btn{
+  color: black;
+  text-decoration: none;
+}
+
+#more-btn:hover, #back-btn:hover {
+  color: white;
+}

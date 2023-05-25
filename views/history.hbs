@@ -1,0 +1,51 @@
+<div class="container mt-5">
+  <table class="table caption-top align-middle">
+    <caption>History</caption>
+    <colgroup>
+      <col style="width: 60%;">
+      <col style="width: 30%;">
+      <col style="width: 10%;">
+    </colgroup>
+    <thead>
+      <tr class="table-warning">
+        <th scope="col">Original URL</th>
+        <th scope="col">Short URL</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each histories}}
+      <tr class="table-light">
+        <td>{{ this.originalUrl }}</td>
+        <td>http://localhost:3000/cool.alan/{{ this.shortenerCode }}</td>
+        <td class="text-end">
+          <button class="btn btn-outline-secondary table-copy-button" type="button">Copy</button>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+    <tfoot>
+      <td></td>
+      <td></td>
+      <td class="text-end">
+        <button class="btn btn-outline-dark" type="button">
+          <a href="/" id="back-btn">Back</a>
+        </button>
+      </td>
+    </tfoot>
+  </table>
+</div>
+
+<script>
+  const tableCopyButtons = document.querySelectorAll('.table-copy-button')
+
+  tableCopyButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const URL = btn.parentElement.previousElementSibling
+      navigator.clipboard.writeText(URL.innerText)
+        .then(() => alert('Copied!'))
+        .catch(error => console.log(error))
+    })
+  })
+
+</script>
