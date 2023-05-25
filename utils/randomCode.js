@@ -24,8 +24,31 @@ const randomCode = {
     } catch (error) {
       console.log(error)
     }
+  },
+  findOrCreate: async function (url) {
+
+    try{
+      const isInDB = await ShortenerUrl.findOne({ originalUrl: url })
+
+      if (isInDB) {
+        return isInDB.shortenerCode
+      } else {
+        const newCode = await randomCode.creatRandomCode()
+
+        const creat = await 
+        ShortenerUrl.create({
+          originalUrl: url,
+          shortenerCode: newCode
+        })
+
+        return newCode
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
+   
   }
 } 
-
 
 module.exports = randomCode

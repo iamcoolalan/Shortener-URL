@@ -1,44 +1,78 @@
 <div class="container mt-5">
-  <form action="/" method="POST">
-    <div class="input-group mb-3">
-      <label class="input-group-text" for="OriginalUrl">Original URL:</label>
-      <input type="text" class="form-control" name="OriginalUrl" id="OriginalUrl" placeholder="enter your url over here" aria-label="OriginalUrl"
-      aria-describedby="submit-button">
-    <button class="btn btn-outline-secondary" type="submit" id="submit-button">Convert</button>
-    </div>
-    <div class="input-group mb-3">
-      <label class="input-group-text" for="shortenerUrl">Short URL:</label>
-      <input type="text" class="form-control" id="shortenerUrl" placeholder="Short url will display over here" aria-label="shortenerUrl" aria-describedby="copy-button" value="{{ shortenerUrl }}"  disabled>
-      <button class="btn btn-outline-secondary" type="button" id="copy-button">Copy</button>
-    </div>
-  </form>
+  <div class="mb-5">
+    <form action="/" method="POST">
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="OriginalUrl">Original URL:</label>
+        <input type="text" class="form-control" name="OriginalUrl" id="OriginalUrl" placeholder="enter your url over here"
+          aria-label="OriginalUrl" aria-describedby="submit-button">
+        <button class="btn btn-outline-secondary" type="submit" id="submit-button">Convert</button>
+      </div>
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="shortenerUrl">Short URL:</label>
+        <input type="text" class="form-control" id="shortenerUrl" placeholder="Short url will display over here"
+          aria-label="shortenerUrl" aria-describedby="copy-button" value="{{ shortenerUrl }}" disabled>
+        <button class="btn btn-outline-secondary" type="button" id="copy-button">Copy</button>
+      </div>
+    </form>
+  </div>
+  
+  <div>
+    <table class="table caption-top align-middle">
+      <caption>History</caption>
+      <colgroup>
+        <col style="width: 60%;">
+        <col style="width: 30%;">
+        <col style="width: 10%;">
+      </colgroup>
+      <thead>
+        <tr class="table-warning">
+          <th scope="col">Original URL</th>
+          <th scope="col">Short URL</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each histories}}
+        <tr class="table-light">
+          <td>{{ this.originalUrl }}</td>
+          <td>http://localhost:3000/cool.alan/{{ this.shortenerCode }}</td>
+          <td class="text-end">
+            <button class="btn btn-outline-secondary table-copy-button" type="button">Copy</button>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <script>
+
   const copyButton = document.querySelector('#copy-button')
+
 
   copyButton.addEventListener('click', () => {
     const URL = document.querySelector('#shortenerUrl')
-    navigator.clipboard.writeText(shortenerUrl.value)
-      .then(() => alert('已複製至剪貼版'))
-      .catch(error => console.log(error))
+
+    if(URL.value.trim()){
+      navigator.clipboard.writeText(URL.value)
+        .then(() => alert('Copied!'))
+        .catch(error => console.log(error))
+    }else{
+      alert('Short URL is empty')
+    }
+    
+  })
+
+  const tableCopyButtons = document.querySelectorAll('.table-copy-button')
+
+  tableCopyButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const URL = btn.parentElement.previousElementSibling
+      navigator.clipboard.writeText(URL.innerText)
+        .then(() => alert('Copied!'))
+        .catch(error => console.log(error))
+    })
   })
 
 </script>
-
-
-<style>
-  .input-group-text{
-    width: 120px;
-    background-color: LemonChiffon;
-  }
-
-  .btn{
-    width: 80px;
-  }
-
-  #shortenerUrl{
-    background-color: white;
-  }
-
-</style>

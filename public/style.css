@@ -1,0 +1,30 @@
+img{
+  display: block;
+  width: 150px;
+  height: 150px;
+  margin: 20px auto 0;
+}
+
+.input-group-text {
+  width: 120px;
+  background-color: LemonChiffon;
+}
+
+.btn {
+  width: 80px;
+}
+
+#shortenerUrl {
+  background-color: white;
+}
+
+.table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.table td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
