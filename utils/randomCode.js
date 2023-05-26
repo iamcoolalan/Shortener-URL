@@ -26,8 +26,8 @@ const randomCode = {
     }
   },
   findOrCreate: async function (url) {
-
-    try{
+   
+    try {
       const isInDB = await ShortenerUrl.findOne({ originalUrl: url })
 
       if (isInDB) {
@@ -35,18 +35,18 @@ const randomCode = {
       } else {
         const newCode = await randomCode.creatRandomCode()
 
-        const creat = await 
-        ShortenerUrl.create({
-          originalUrl: url,
-          shortenerCode: newCode
-        })
+        const creat = await
+          ShortenerUrl.create({
+            originalUrl: url,
+            shortenerCode: newCode
+          })
 
         return newCode
       }
 
     } catch (error) {
       console.log(error)
-    }
+    }   
    
   }
 } 

@@ -4,11 +4,13 @@ const Schema = mongoose.Schema
 const shortenerUrlSchema = new Schema({
   originalUrl:{
     type: String,
-    required: true
+    required: [true, 'Empty URL'],
+    unique: true
   },
   shortenerCode:{
     type: String,
-    required: true
+    required: [true, 'Empty Code'],
+    unique: true
   }
 })
 

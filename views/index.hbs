@@ -1,11 +1,16 @@
 <div class="container mt-5">
   <div class="mb-5">
-    <form action="/" method="POST">
+    <form action="/" method="POST" class="needs-validation" novalidate>
       <div class="input-group mb-3">
         <label class="input-group-text" for="OriginalUrl">Original URL:</label>
-        <input type="text" class="form-control" name="OriginalUrl" id="OriginalUrl" placeholder="enter your url over here"
-          aria-label="OriginalUrl" aria-describedby="submit-button">
+        <input type="text" class="form-control" name="OriginalUrl" id="OriginalUrl"
+          placeholder="enter your url over here" aria-label="OriginalUrl" aria-describedby="submit-button"
+          pattern="^(https?|ftp):(\/{0,3})([0-9.\-A-Za-z]+)(:\d+)?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$"
+          required>
         <button class="btn btn-outline-secondary" type="submit" id="submit-button">Convert</button>
+        <div class="invalid-feedback">
+          you didn't enter any URL or your URL is not a valid format
+        </div>
       </div>
       <div class="input-group mb-3">
         <label class="input-group-text" for="shortenerUrl">Short URL:</label>
@@ -15,7 +20,7 @@
       </div>
     </form>
   </div>
-  
+
   <div>
     <table class="table caption-top align-middle">
       <caption>Last 5 records</caption>
@@ -56,6 +61,38 @@
 </div>
 
 <script>
+  function customerValidity(form, input) {
+    if (form.checkValidity() || !input.value.trim()) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+
+
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+    const originalUrl = document.querySelector('#OriginalUrl')
+
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
 
   const copyButton = document.querySelector('#copy-button')
 
@@ -63,14 +100,14 @@
   copyButton.addEventListener('click', () => {
     const URL = document.querySelector('#shortenerUrl')
 
-    if(URL.value.trim()){
+    if (URL.value.trim()) {
       navigator.clipboard.writeText(URL.value)
         .then(() => alert('Copied!'))
         .catch(error => console.log(error))
-    }else{
+    } else {
       alert('Short URL is empty')
     }
-    
+
   })
 
   const tableCopyButtons = document.querySelectorAll('.table-copy-button')
@@ -83,5 +120,7 @@
         .catch(error => console.log(error))
     })
   })
+
+
 
 </script>
