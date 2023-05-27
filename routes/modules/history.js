@@ -12,6 +12,7 @@ router.get('/', (req,res) => [
     })
     .catch(error => {
       console.log(error)
+      res.render('error',{ layout: false, errorMessage: error.message })
     })
 ])
 
