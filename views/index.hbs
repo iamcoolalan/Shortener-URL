@@ -2,21 +2,21 @@
   <div class="mb-5">
     <form action="/" method="POST" class="needs-validation" novalidate>
       <div class="input-group mb-3">
-        <label class="input-group-text" for="OriginalUrl">Original URL:</label>
-        <input type="text" class="form-control" name="OriginalUrl" id="OriginalUrl"
+        <label class="input-group-text border border-dark" for="OriginalUrl">Original URL:</label>
+        <input type="text" class="form-control border border-dark" name="OriginalUrl" id="OriginalUrl"
           placeholder="enter your url over here" aria-label="OriginalUrl" aria-describedby="submit-button"
           pattern="^(https?|ftp):(\/{0,3})([0-9.\-A-Za-z]+)(:\d+)?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$"
           required>
-        <button class="btn btn-outline-secondary" type="submit" id="submit-button">Convert</button>
+        <button class="btn btn-outline-dark" type="submit" id="submit-button">Convert</button>
         <div class="invalid-feedback">
           you didn't enter any URL or your URL is not a valid format
         </div>
       </div>
       <div class="input-group mb-3">
-        <label class="input-group-text" for="shortenerUrl">Short URL:</label>
-        <input type="text" class="form-control" id="shortenerUrl" placeholder="Short url will display over here"
+        <label class="input-group-text border border-dark" for="shortenerUrl">Short URL:</label>
+        <input type="text" class="form-control border border-dark" id="shortenerUrl" placeholder="Short url will display over here"
           aria-label="shortenerUrl" aria-describedby="copy-button" value="{{ shortenerUrl }}" disabled>
-        <button class="btn btn-outline-secondary" type="button" id="copy-button">Copy</button>
+        <button class="btn btn-outline-dark" type="button" id="copy-button">Copy</button>
       </div>
     </form>
   </div>

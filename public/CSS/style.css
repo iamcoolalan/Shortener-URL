@@ -1,13 +1,17 @@
+body{
+  background-color: #FAFAFC;
+}
+
 img{
   display: block;
   width: 150px;
   height: 150px;
-  margin: 20px auto 0;
+  margin: 30px auto 0;
 }
 
 .input-group-text {
   width: 120px;
-  background-color: LemonChiffon;
+  background-color: #FFF3CD;
 }
 
 .btn {
@@ -36,4 +40,9 @@ img{
 
 #more-btn:hover, #back-btn:hover {
   color: white;
+}
+
+.input-group label, 
+.input-group button{
+  font-weight: 600;
 }
