@@ -22,7 +22,6 @@ router.get('/', (req, res) => {
 
 })
 
-//明天把異步函式寫到另外的js再導入
 router.post('/', (req, res) => {
   const originalUrl = req.body.OriginalUrl
 

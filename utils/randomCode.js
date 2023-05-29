@@ -8,17 +8,19 @@ const nanoid = customAlphabet(alphabet, 5)
 
 
 const randomCode = {
-  creatRandomCode: async function() {
+  createRandomCode: async function () {
     let newCode = nanoid()
+
     try {
       //check value is unique or not
       const isDuplicate = await ShortenerUrl.findOne({ shortenerCode: newCode })
 
       //duplicate,regenerate code
       if (isDuplicate) {
-        creatRandomCode()
+        //also return result when it is unique
+        return await this.createRandomCode()
       } else {
-      //unique, return value  
+        //unique, return value 
         return newCode
       }
     } catch (error) {
@@ -26,16 +28,16 @@ const randomCode = {
     }
   },
   findOrCreate: async function (url) {
-   
+
     try {
       const isInDB = await ShortenerUrl.findOne({ originalUrl: url })
 
       if (isInDB) {
         return isInDB.shortenerCode
       } else {
-        const newCode = await randomCode.creatRandomCode()
+        const newCode = await randomCode.createRandomCode()
 
-        const creat = await
+        const create = await
           ShortenerUrl.create({
             originalUrl: url,
             shortenerCode: newCode
@@ -46,9 +48,9 @@ const randomCode = {
 
     } catch (error) {
       console.log(error)
-    }   
-   
+    }
+
   }
-} 
+}
 
 module.exports = randomCode

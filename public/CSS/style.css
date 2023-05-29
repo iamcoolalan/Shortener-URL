@@ -35,10 +35,21 @@ img{
 
 #more-btn, #back-btn{
   color: black;
+  font-weight: 600;
   text-decoration: none;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 80px;
+  height: 36px;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 #more-btn:hover, #back-btn:hover {
+  background-color: black;
   color: white;
 }
 
